@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: roadrescue
+    env: node
+    plan: free
+    buildCommand: npm run setup && npm run build && npm run seed
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CITY_NAME
+        value: Chennai
+      - key: CITY_CENTER_LAT
+        value: 13.0827
+      - key: CITY_CENTER_LNG
+        value: 80.2707
+      - key: DB_PATH
+        value: ./db/roadrescue.db

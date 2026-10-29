@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoadRescue - Academic Presentation Slides</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    code, pre { font-family: 'JetBrains Mono', monospace; }
+    .slide { display: none; }
+    .slide.active { display: flex; }
+    @media print {
+      body { background: white !important; color: black !important; }
+      .slide { display: flex !important; page-break-after: always; height: 100vh; }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between select-none">
+
+  <!-- Top Slide Navbar -->
+  <header class="border-b border-slate-800/80 px-6 py-4 flex items-center justify-between no-print">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-500 to-rose-500 flex items-center justify-center font-bold text-base shadow-md">
+        🚗
+      </div>
+      <div>
+        <span class="font-extrabold text-sm tracking-tight text-white">RoadRescue Presentation</span>
+        <span class="ml-2 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">Software Engineering</span>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4 text-xs font-mono text-slate-400">
+      <span>Slide <span id="currentSlideNum" class="text-amber-400 font-bold text-sm">1</span> / <span id="totalSlides">12</span></span>
+      <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">🖨️ Export PDF / Print</button>
+    </div>
+  </header>
+
+  <!-- Slide Canvas Container -->
+  <main class="flex-1 max-w-6xl w-full mx-auto p-6 sm:p-10 flex items-center justify-center">
+
+    <!-- SLIDE 1: TITLE SLIDE -->
+    <section class="slide active flex-col justify-center items-center text-center space-y-6 w-full py-12">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-widest">
+        🎓 Software Engineering Academic Project
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl">
+        RoadRescue: Smart Car Breakdown Roadside Assistance
+      </h1>
+      <p class="text-lg text-slate-400 max-w-2xl font-normal leading-relaxed">
+        Explainable Fault Triage, Multi-Factor Smart Dispatch, Real-Time Fleet Tracking, and Subsystem Health Degradation Forecasting
+      </p>
+      <div class="pt-6 flex flex-wrap justify-center gap-4 text-xs font-mono text-slate-300">
+        <span class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800">🏛️ 3-Tier Distributed Architecture</span>
+        <span class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800">⚡ Event-Driven WebSocket FSM</span>
+        <span class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800">🔬 Predictive Analytics Novelty</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: PROBLEM STATEMENT & MOTIVATION -->
+    <section class="slide flex-col space-y-6 w-full">
+      <div class="text-xs font-bold uppercase tracking-widest text-rose-400">01. Problem Statement</div>
+      <h2 class="text-3xl font-extrabold text-white">Challenges in Conventional Roadside Assistance</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+          <div class="text-3xl">📞</div>
+          <h3 class="text-lg font-bold text-white">Subjective Articulation</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Drivers in stressful breakdown situations struggle to describe mechanical failure symptoms accurately to human call center dispatchers.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+          <div class="text-3xl">🧰</div>
+          <h3 class="text-lg font-bold text-white">Tooling Mismatch & High Repeat Trips</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Mechanics frequently arrive with incorrect equipment (e.g., standard jumper cables for thermal radiator breaches), requiring expensive secondary tows.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+          <div class="text-3xl">⏳</div>
+          <h3 class="text-lg font-bold text-white">Opaque Dispatch & Safety Hazards</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Dispatch relies solely on rough proximity without skill matching or workload awareness, leaving vulnerable stranded drivers in dark, unsafe corridors.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: SYSTEM GOALS & SCOPE SPECIFICATION -->
+    <section class="slide flex-col space-y-6 w-full">
+      <div class="text-xs font-bold uppercase tracking-widest text-amber-400">02. System Scope</div>
+      <h2 class="text-3xl font-extrabold text-white">Engineering Scope Control & Functional Objectives</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+          <h3 class="text-base font-bold text-amber-400 flex items-center gap-2"><span>🎯</span> 5 Governed Fault Domains</h3>
+          <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside">
+            <li><strong class="text-white">Battery / Electrical:</strong> Terminal voltage thresholds (<11.8V 🟠, <11.0V 🔴)</li>
+            <li><strong class="text-white">Engine Overheating:</strong> Coolant thermal monitoring (>100°C 🟠, >110°C 🔴)</li>
+            <li><strong class="text-white">Tyre / Puncture:</strong> 4-wheel independent TPMS pressure checks (<25 PSI 🟠, <20 PSI 🔴)</li>
+            <li><strong class="text-white">Fuel System:</strong> Tank level depletion & starvation stall recognition (<5% 🟠, 0% 🔴)</li>
+            <li><strong class="text-white">Braking & Unknown Noise:</strong> Failsafe critical triage protocol (Always 🔴 Stop Now)</li>
+          </ul>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+          <h3 class="text-base font-bold text-cyan-400 flex items-center gap-2"><span>💻</span> Hardware Simulation Architecture</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">To remove dependency on physical OBD-II Bluetooth hardware during evaluation, the architecture incorporates an interactive parameter simulator injecting high-fidelity telematics scenarios.</p>
+          <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 text-[11px] font-mono text-slate-400">
+            Parameters: Voltage (V) · Coolant (°C) · 4-Corner PSI · Fuel (%) · Engine RPM · 8 Dashboard Warning Indicators
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: ARCHITECTURE & DESIGN PATTERNS -->
+    <section class="slide flex-col space-y-6 w-full">
+      <div class="text-xs font-bold uppercase tracking-widest text-emerald-400">03. Software Architecture</div>
+      <h2 class="text-3xl font-extrabold text-white">3-Tier Distributed Architecture & Design Patterns</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs pt-2">
+        <div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <div class="text-emerald-400 font-bold uppercase text-[11px]">Presentation Layer</div>
+          <div class="font-bold text-white text-sm">React 19 + Vite + Tailwind</div>
+          <p class="text-slate-400">Modular SPA with responsive mobile-first views, interactive Leaflet OpenStreetMap layers, and Recharts telematics plotting.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <div class="text-amber-400 font-bold uppercase text-[11px]">Application Layer</div>
+          <div class="font-bold text-white text-sm">Node.js + Express + Socket.io</div>
+          <p class="text-slate-400">RESTful API routes, JWT RBAC security middleware, WebSocket room multiplexing, and rule evaluation engines.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <div class="text-cyan-400 font-bold uppercase text-[11px]">Data Layer</div>
+          <div class="font-bold text-white text-sm">SQLite Engine (Pure JS)</div>
+          <p class="text-slate-400">Zero-native dependency SQL persistence (`sql.js`) with ACID transactions, foreign keys, and automatic disk persistence.</p>
+        </div>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300">
+        <strong class="text-white">Key Software Engineering Patterns:</strong> Finite State Machine (Lifecycle status transitions) · Strategy Pattern (Pluggable diagnosis rules) · Observer Pattern (Socket.io real-time coordinate streaming) · Decorator/Middleware (JWT auth guards).
+      </div>
+    </section>
+
+    <!-- SLIDE 5: EXPLAINABLE DIAGNOSIS & SEVERITY TRIAGE -->
+    <section class="slide flex-col space-y-6 w-full">
+      <div class="text-xs font-bold uppercase tracking-widest text-rose-400">04. Fault Diagnosis</div>
+      <h2 class="text-3xl font-extrabold text-white">Explainable Rule Engine & Severity Triage</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+        <div class="p-5 rounded-2xl bg-emerald-950/30 border border-emerald-500/40 space-y-2">
+          <span class="text-xs font-bold uppercase px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300">🟢 Green Triage</span>
+          <h3 class="text-sm font-bold text-white">Safe to Drive Slowly</h3>
+          <p class="text-xs text-slate-300">Minor voltage drops (11.8V-12.4V) or under-inflated tyres (25-28 PSI). Safe for slow travel to the nearest service garage.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-amber-950/30 border border-amber-500/40 space-y-2">
+          <span class="text-xs font-bold uppercase px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300">🟠 Orange Triage</span>
+          <h3 class="text-sm font-bold text-white">Stop Soon / Limited Driving</h3>
+          <p class="text-xs text-slate-300">Coolant temperatures (100°C-110°C) or low fuel (<5%). Pull over safely to avert internal combustion damage.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-rose-950/30 border border-rose-500/40 space-y-2">
+          <span class="text-xs font-bold uppercase px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300">🔴 Red Triage</span>
+          <h3 class="text-sm font-bold text-white">Stop NOW / Immediate Shutdown</h3>
+          <p class="text-xs text-slate-300">Coolant >110°C, flat tyre <15 PSI, battery <11V, or any brake warning. Hazard lights on, engine shut off immediately.</p>
+        </div>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 font-mono">
+        Pre-Arrival Mechanic Checklist: Auto-generates exact tools & parts manifest (multimeter, jumper, OAT coolant, radial plugs, fuel canisters) to guarantee first-visit resolution.
+      </div>
+    </section>
+
+    <!-- SLIDE 6: SMART DISPATCH & MATHEMATICAL FORMULATION -->
+    <section class="slide flex-col space-y-6 w-full">
+      <div class="text-xs font-bold uppercase tracking-widest text-amber-400">05. Algorithmic Dispatch</div>
+      <h2 class="text-3xl font-extrabold text-white">Smart Dispatch Mathematical Formulation</h2>
+      <div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
+        <div class="text-sm font-mono text-amber-400 font-bold">
+          Utility Score = (0.40 × S_dist) + (0.25 × S_skill) + (0.20 × S_rating) + (0.15 × S_workload)
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-300">
+          <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+            <strong class="text-white block mb-1">1. Haversine Proximity Factor (40%)</strong>
+            <span>Great-circle distance between breakdown GPS and mechanic position: <code class="text-amber-300">max(0, 1 - d / 25km)</code></span>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+            <strong class="text-white block mb-1">2. Skill Specialization Match (25%)</strong>
+            <span>Evaluates mechanic profile skills against diagnosed failure: <code class="text-amber-300">1.0 if match else 0.3</code></span>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+            <strong class="text-white block mb-1">3. Rating Quality Score (20%)</strong>
+            <span>Normalizes verified customer review score: <code class="text-amber-300">Rating / 5.0</code></span>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+            <strong class="text-white block mb-1">4. Workload Availability (15%)</strong>
+            <span>Active concurrent job capacity: <code class="text-amber-300">max(0, 1 - ActiveJobs / 5)</code></span>
+          </div>
+        </div>
+      </div>
+      <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-400">
+        <strong class="text-white">Auto-Cascade Dispatch:</strong> Dispatches top-scoring mechanic with a 60-second acceptance timeout before automatically cascading to the next optimal responder.
+      </div>
+    </section>
+
+    <!-- SLIDE 7: ACADEMIC NOVELTY 1 -->
+    <section class="slide flex-col space-y-6 w-full">
+      <div class="text-xs font-bold uppercase tracking-widest text-cyan-400">06. Academic Novelty 1</div>
+      <h2 class="text-3xl font-extrabold text-white">Subsystem Health Degradation Predictor</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
+          <h3 class="text-base font-bold text-white flex items-center gap-2"><span>🔬</span> Multi-Subsystem Health Index</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">Unlike basic fault readers, RoadRescue computes weighted continuous health indices across 5 automotive subsystems:</p>
+          <div class="space-y-2 text-xs font-mono">
+            <div class="flex justify-between p-2 rounded bg-slate-950"><span>Electrical & Battery:</span><span class="text-amber-400">25% Weight</span></div>
+            <div class="flex justify-between p-2 rounded bg-slate-950"><span>Engine Thermal Circuit:</span><span class="text-rose-400">25% Weight</span></div>
+            <div class="flex justify-between p-2 rounded bg-slate-950"><span>Tyre Pressure Integrity:</span><span class="text-cyan-400">20% Weight</span></div>
+            <div class="flex justify-between p-2 rounded bg-slate-950"><span>Fuel Delivery System:</span><span class="text-emerald-400">15% Weight</span></div>
+            <div class="flex justify-between p-2 rounded bg-slate-950"><span>Brake Hydraulic Circuit:</span><span class="text-purple-400">15% Weight</span></div>
+          </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
+          <h3 class="text-base font-bold text-white flex items-center gap-2"><span>📈</span> 60-Second Derivative Slope Analysis</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">Analyses telemetry slope from the Breakdown Black Box to forecast failure velocity:</p>
+          <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-slate-300 space-y-2">
+            <div><span class="text-rose-400">dT/dt > +0.33°C/sec:</span> Thermal Runaway alert</div>
+            <div><span class="text-amber-400">dV/dt < -0.05V/sec:</span> Alternator Depletion alert</div>
+          </div>
+          <p class="text-xs text-slate-400">Outputs concrete preventative actions before engine seizure or manifold warping occurs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: ACADEMIC NOVELTY 2 -->
+    <section class="slide flex-col space-y-6 w-full">
+      <div class="text-xs font-bold uppercase tracking-widest text-amber-400">07. Academic Novelty 2</div>
+      <h2 class="text-3xl font-extrabold text-white">Smart Repair Cost & Labor Hours Estimator</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
+          <h3 class="text-base font-bold text-white flex items-center gap-2"><span>💰</span> Algorithmic Pricing Transparency</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">Protects stranded drivers from predatory roadside overpricing by dynamically computing transparent cost bounds based on verified hardware part catalogs and standard labor rates:</p>
+          <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-amber-400">
+            Cost_Total = (Cost_Hardware + Hours_Labor × Rate_Hour) × γ_Severity
+          </div>
+          <p class="text-xs text-slate-400">Integrates an Emergency Surcharge factor (1.25x) only for high-hazard Red triage field interventions.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
+          <h3 class="text-base font-bold text-white flex items-center gap-2"><span>🛡️</span> Warranty & Component Certification</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">Every dispatch manifest issues clear warranty obligations before the driver commits:</p>
+          <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside">
+            <li><strong class="text-white">Batteries:</strong> 12 Months hardware + 30 days roadside labor</li>
+            <li><strong class="text-white">Tyre Plugs:</strong> Certified safe for 1,000 miles before vulcanization</li>
+            <li><strong class="text-white">Cooling Hoses:</strong> 6 Months cooling circuit warranty</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: PUBLIC SAFETY TRACKING & FLEET CONSOLE -->
+    <section class="slide flex-col space-y-6 w-full">
+      <div class="text-xs font-bold uppercase tracking-widest text-emerald-400">08. Real-Time Tracking & Safety</div>
+      <h2 class="text-3xl font-extrabold text-white">Shareable Safety Link & Mechanic Mission Console</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+          <h3 class="text-base font-bold text-white flex items-center gap-2"><span>🔗</span> Expiring Public Safety Link (/track/:token)</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">Allows family and friends to monitor driver rescue status, mechanic live GPS coordinates, and ETA in real time without login credentials.</p>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-emerald-400 font-mono">
+            🛡️ Night / Unsafe-Area SOS: One-tap WhatsApp emergency message pre-filled with live tracking coordinates.
+          </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+          <h3 class="text-base font-bold text-white flex items-center gap-2"><span>🔧</span> Mechanic Mission Console</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">Mechanic terminal equipped with availability toggling, real-time incoming breakdown radar, pre-arrival checklist preview, and live status FSM buttons (Accepted → On the Way → Arrived → Completed).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: VERIFICATION & TESTING -->
+    <section class="slide flex-col space-y-6 w-full">
+      <div class="text-xs font-bold uppercase tracking-widest text-purple-400">09. Quality Assurance</div>
+      <h2 class="text-3xl font-extrabold text-white">Automated Verification & Unit Testing</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+          <h3 class="text-base font-bold text-white">Automated Test Suites (6/6 Passing)</h3>
+          <div class="space-y-1.5 font-mono text-xs">
+            <div class="text-emerald-400">✔ Battery Failure Rule & Triage Check</div>
+            <div class="text-emerald-400">✔ Engine Overheating Thermal Rules</div>
+            <div class="text-emerald-400">✔ Low Tyre & Puncture Isolation Check</div>
+            <div class="text-emerald-400">✔ Fuel System Depletion Test</div>
+            <div class="text-emerald-400">✔ Brake Issue Failsafe Red Triage</div>
+            <div class="text-emerald-400">✔ Dispatch Scoring & Haversine Distance</div>
+          </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+          <h3 class="text-base font-bold text-white">End-to-End System Pipeline Verified</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Driver Authentication $\rightarrow$ Telematics Telemetry & Simulator $\rightarrow$ Rule Diagnosis $\rightarrow$ Degradation Predictor $\rightarrow$ Cost Estimator $\rightarrow$ Smart Dispatch $\rightarrow$ Mechanic Acceptance $\rightarrow$ Public Safety Tracking Link.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: LIVE DEMONSTRATION & DEPLOYMENT -->
+    <section class="slide flex-col space-y-6 w-full">
+      <div class="text-xs font-bold uppercase tracking-widest text-emerald-400">10. Live Deployment</div>
+      <h2 class="text-3xl font-extrabold text-white">Live Cloud Deployment & Demo Credentials</h2>
+      <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase text-slate-400">Production Public URL</span>
+          <span class="text-xs font-mono px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Active & Live</span>
+        </div>
+        <a href="https://surgery-everyone-waterproof-column.trycloudflare.com" target="_blank" class="block text-xl font-mono text-cyan-400 font-bold hover:underline break-all">
+          https://surgery-everyone-waterproof-column.trycloudflare.com
+        </a>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="font-bold text-white">🚗 Driver</div>
+          <div class="text-slate-400 font-mono text-[11px] mt-1">arun@example.com</div>
+          <div class="text-amber-400 text-[10px] mt-1">password123</div>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="font-bold text-white">🔧 Mechanic (Priya)</div>
+          <div class="text-slate-400 font-mono text-[11px] mt-1">priya@roadrescue.com</div>
+          <div class="text-amber-400 text-[10px] mt-1">password123</div>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="font-bold text-white">🔧 Mechanic (Ravi)</div>
+          <div class="text-slate-400 font-mono text-[11px] mt-1">ravi@roadrescue.com</div>
+          <div class="text-amber-400 text-[10px] mt-1">password123</div>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="font-bold text-white">👑 Admin</div>
+          <div class="text-slate-400 font-mono text-[11px] mt-1">admin@roadrescue.com</div>
+          <div class="text-amber-400 text-[10px] mt-1">password123</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: CONCLUSION & FUTURE WORK -->
+    <section class="slide flex-col space-y-6 w-full">
+      <div class="text-xs font-bold uppercase tracking-widest text-amber-400">11. Conclusion</div>
+      <h2 class="text-3xl font-extrabold text-white">Summary & Future Research Directions</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+          <h3 class="text-base font-bold text-emerald-400">Academic Project Contributions</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Successfully implemented a full-stack, distributed roadside breakdown solution with explainable triage, auto-cascading dispatch, real-time tracking, subsystem health degradation forecasting, and transparent repair estimation.
+          </p>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+          <h3 class="text-base font-bold text-cyan-400">Future Work</h3>
+          <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside">
+            <li>Physical OBD-II hardware support via Web Bluetooth API (ELM327)</li>
+            <li>Acoustic engine failure detection using Convolutional Neural Networks</li>
+            <li>Escrow blockchain payments & smart-contract roadside warranty validation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-center pt-4">
+        <span class="text-xs font-bold text-slate-400">Thank you! Questions & Discussion</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <footer class="border-t border-slate-800/80 px-6 py-4 flex items-center justify-between no-print">
+    <div class="text-xs text-slate-500">
+      Use <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">←</kbd> and <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">→</kbd> arrow keys to navigate
+    </div>
+    <div class="flex items-center space-x-3">
+      <button id="prevBtn" onclick="prevSlide()" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition disabled:opacity-40">
+        ← Previous
+      </button>
+      <button id="nextBtn" onclick="nextSlide()" class="px-5 py-2 rounded-xl text-xs font-bold bg-amber-400 hover:bg-amber-300 text-slate-950 transition shadow-md shadow-amber-400/20">
+        Next →
+      </button>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    document.getElementById('totalSlides').innerText = totalSlides;
+
+    function showSlide(index) {
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === index);
+      });
+      currentSlide = index;
+      document.getElementById('currentSlideNum').innerText = currentSlide + 1;
+      document.getElementById('prevBtn').disabled = currentSlide === 0;
+      document.getElementById('nextBtn').innerText = currentSlide === totalSlides - 1 ? 'Finish 🏁' : 'Next →';
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        showSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        showSlide(currentSlide - 1);
+      }
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    });
+
+    showSlide(0);
+  </script>
+</body>
+</html>

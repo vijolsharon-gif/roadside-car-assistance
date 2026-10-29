@@ -1,0 +1,25 @@
+{
+  "name": "roadrescue",
+  "version": "1.0.0",
+  "description": "RoadRescue: Smart Car Breakdown Roadside Assistance",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && node --watch index.js",
+    "start": "node server/index.js",
+    "seed": "cd server && node db/seed.js",
+    "build": "cd client && npm run build",
+    "test": "cd tests && node --test *.test.js",
+    "setup": "cd client && npm install && cd ../server && npm install --save sql.js --ignore-scripts"
+  },
+  "keywords": [
+    "roadside-assistance",
+    "breakdown",
+    "diagnosis"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}
